@@ -10,8 +10,6 @@ get.docker.io                           # Docker
 dl.dropboxusercontent.com               # Dropbox URI
 cloud-images.ubuntu.com                 # Base vboxes
 puppet-vagrant-boxes.puppetlabs.com     # Beaker/Puppet vboxes
-archive.ubuntu.com                      # Base ubuntu repositories
-security.ubuntu.com                     # Security updates
 www.openprinting.org                    # Printer drivers (ubuntu extras)
 linux.dropbox.com                       # Dropbox
 deb.opera.com                           # Opera
