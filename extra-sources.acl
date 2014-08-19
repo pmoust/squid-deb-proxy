@@ -10,6 +10,8 @@ get.docker.io                           # Docker
 dl.dropboxusercontent.com               # Dropbox URI
 cloud-images.ubuntu.com                 # Base vboxes
 puppet-vagrant-boxes.puppetlabs.com     # Beaker/Puppet vboxes
+archive.ubuntu.com                      # Base ubuntu repositories
+security.ubuntu.com                     # Security updates
 gr.archive.ubuntu.com                   # Greek mirror
 us.archive.ubuntu.com                   # USA mirror
 uk.archive.ubuntu.com                   # UK mirror
