@@ -2,19 +2,21 @@ FROM ubuntu:trusty
 MAINTAINER Panagiotis Moustafellos <pmoust@gmail.com>
 
 # update and install squid-deb-proxy
+ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
-    apt-get -y upgrade && \
-    apt-get install -y squid-deb-proxy squid-deb-proxy-client
+    apt-get install -y --no-install-recommends \
+      squid-deb-proxy squid-deb-proxy-client avahi-daemon avahi-utils
 
 # Extra locations to cache from
-ADD extra-sources.acl   /etc/squid-deb-proxy/mirror-dstdomain.acl.d/20-extra-sources.acl
+ADD extra-sources.acl /etc/squid-deb-proxy/mirror-dstdomain.acl.d/20-extra-sources.acl
 
-# Point cache directory to /cachedir (80GB volume) and remove logging
-RUN sed -ri 's/cache_dir aufs \/var\/cache\/squid-deb-proxy 40000 16 256/cache_dir aufs \/cachedir 8000 16 256/' /etc/squid-deb-proxy/squid-deb-proxy.conf && \ 
-    sed -i '/^cache_access_log/d' /etc/squid-deb-proxy/squid-deb-proxy.conf && \
-    sed -i '/^cache_log/d' /etc/squid-deb-proxy/squid-deb-proxy.conf && \
-    sed -i '/^cache_store_log/d' /etc/squid-deb-proxy/squid-deb-proxy.conf;
+# Point cache directory to /cachedir
+RUN ln -sf /cachedir /var/cache/squid-deb-proxy
 
+# Redirect logs to stdout for the container
+RUN ln -sf /dev/stdout /var/log/squid-deb-proxy/access.log
+RUN ln -sf /dev/stdout /var/log/squid-deb-proxy/store.log
+RUN ln -sf /dev/stdout /var/log/squid-deb-proxy/cache.log
 
 ADD start.sh /start.sh
 RUN chmod +x /start.sh
@@ -22,5 +24,6 @@ RUN chmod +x /start.sh
 VOLUME ["/cachedir"]
 
 EXPOSE 8000
+EXPOSE 5353/udp
 
 ENTRYPOINT ["/start.sh"]
