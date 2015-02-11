@@ -16,3 +16,7 @@ deb.opera.com                           # Opera
 downloads-distro.mongodb.org            # MongoHQ
 repository.spotify.com                  # Spotify
 repo.steampowered.com                   # Steam
+deb.torproject.org                      # Tor
+download.rethinkdb.com                  # RethinkDB
+download.opensuse.org                   # OpenSuse Build Service
+packages.elasticsearch.org              # ElasticSearch
