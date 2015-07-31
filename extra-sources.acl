@@ -20,3 +20,4 @@ deb.torproject.org                      # Tor
 download.rethinkdb.com                  # RethinkDB
 download.opensuse.org                   # OpenSuse Build Service
 packages.elasticsearch.org              # ElasticSearch
+packages.elastic.co                     # ElasticSearch new URL
